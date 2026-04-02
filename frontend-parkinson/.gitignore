@@ -1,0 +1,26 @@
+# Ignore dataset
+data
+dataset
+
+data_spiral/
+train/
+test/
+testing_imgs/
+
+# Ignore trained models
+*.h5
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+env/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node modules (frontend)
+node_modules/
