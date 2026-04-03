@@ -12,7 +12,7 @@ CORS(app)  # allow React frontend
 # -----------------------------
 # Load trained model
 # -----------------------------
-MODEL_PATH = "cnn_spiral_model_final.h5"
+MODEL_PATH = "cnn_combined_model_final.h5"  # Changed from spiral only
 
 model = tf.keras.models.load_model(MODEL_PATH)
 
