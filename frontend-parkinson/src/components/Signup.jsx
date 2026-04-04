@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { UserPlus, Mail, Lock, Eye, EyeOff, User, Phone } from 'lucide-react'
 
 const Signup = ({ onSignup, onSwitchToLogin }) => {
@@ -101,14 +102,20 @@ const Signup = ({ onSignup, onSwitchToLogin }) => {
       setSuccess('Account created successfully! Redirecting...')
 
       // Auto login after signup
-      setTimeout(() => {
-        localStorage.setItem('user', JSON.stringify({
-          email: formData.email,
-          name: formData.name,
-          loginTime: new Date().toISOString(),
-        }))
-        onSignup(formData.email)
-      }, 1500)
+     const navigate = useNavigate()
+
+setTimeout(() => {
+  localStorage.setItem('user', JSON.stringify({
+    email: formData.email,
+    name: formData.name,
+    loginTime: new Date().toISOString(),
+  }))
+
+  onSignup(formData.email)
+
+  navigate("/login")
+
+}, 1500)
     } catch (error) {
       console.error('Signup error:', error)
       setError('Failed to create account. Please try again.')
@@ -131,7 +138,7 @@ const Signup = ({ onSignup, onSwitchToLogin }) => {
           <p className="text-gray-600">Sign up to track your prediction history</p>
         </div>
 
-        {/* Signup Form */}
+        {/* Signup Form */} 
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <form onSubmit={handleSubmit} className="space-y-5">
             {error && (
@@ -345,6 +352,7 @@ const Signup = ({ onSignup, onSwitchToLogin }) => {
               </button>
             </p>
           </div>
+          
         </div>
 
         {/* Demo Info */}
@@ -353,7 +361,9 @@ const Signup = ({ onSignup, onSwitchToLogin }) => {
             <strong>Demo Mode:</strong> All data is stored locally in your browser
           </p>
         </div>
+         <a href="/">back to home page</a>
       </div>
+      
     </div>
   )
 }

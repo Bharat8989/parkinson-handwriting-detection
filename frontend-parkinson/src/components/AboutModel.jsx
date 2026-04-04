@@ -29,7 +29,7 @@ const AboutModel = () => {
   return (
     <section
       id="about"
-      ref={sectionRef}
+      ref={sectionRef} 
       className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-white"
     >
       <div className="max-w-7xl mx-auto">

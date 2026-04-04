@@ -60,7 +60,7 @@ const UploadSection = ({ onAnalyze, isAnalyzing }) => {
   }
 
   return (
-    <section className="py-16 px-4 bg-[#F9FAFB]">
+    <section id="upload" className="py-16 px-4 bg-[#F9FAFB]">
       <div className="max-w-4xl mx-auto">
 
         <div className="text-center mb-12">

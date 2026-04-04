@@ -77,7 +77,7 @@ const ResultSection = ({ result, onReset, onViewHistory }) => {
 
                 <div className="mb-6 pt-4 border-t border-gray-200">
                   <p className="text-xs text-gray-500 text-left">
-                    <span className="text-red-600 font-medium">Important:</span> This is not a diagnostic tool. This prediction is based on AI analysis and should not replace professional medical diagnosis. Please consult with healthcare professionals for accurate diagnosis and treatment decisions.
+                    {/* <span className="text-red-600 font-medium">Important:</span> This is not a diagnostic tool. This prediction is based on AI analysis and should not replace professional medical diagnosis. Please consult with healthcare professionals for accurate diagnosis and treatment decisions. */}
                   </p>
                 </div>
               </>

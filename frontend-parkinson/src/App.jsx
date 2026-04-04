@@ -9,7 +9,7 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Login from './components/Login'
 import Signup from './components/Signup'
-// import Records from './components/Records'
+import Records from './components/Records'
 
 function App() {
   const [predictionResult, setPredictionResult] = useState(null)
@@ -62,7 +62,7 @@ function App() {
         prediction: data.prediction === 'parkinson' ? 'Positive' : 'Negative',
         confidence: data.confidence,
         handwritingFile: handwritingFile ? handwritingFile.name : null,
-        // voiceFile: voiceFile ? voiceFile.name : null,
+        voiceFile: voiceFile ? voiceFile.name : null,
         date: new Date().toLocaleString(),
       }
   

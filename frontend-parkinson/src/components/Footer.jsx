@@ -80,7 +80,7 @@ const Footer = () => {
         <div className="border-t border-gray-200 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs text-gray-500 text-center md:text-left">
-              <span className="text-red-600 font-medium">Important:</span> This is not a diagnostic tool. Please consult healthcare professionals for medical diagnosis.
+              {/* <span className="text-red-600 font-medium">Important:</span> This is not a diagnostic tool. Please consult healthcare professionals for medical diagnosis. */}
             </p>
             <p className="text-center text-gray-500 text-sm">
               © 2025 NeuroPredict. All Rights Reserved.

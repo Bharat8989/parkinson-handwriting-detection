@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { LogIn, Mail, Lock, Eye, EyeOff } from 'lucide-react'
 
 const Login = ({ onLogin, onSwitchToSignup }) => {
@@ -17,45 +18,40 @@ const Login = ({ onLogin, onSwitchToSignup }) => {
     })
     setError('')
   }
+const handleSubmit = async (e) => {
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setIsLoading(true)
-    setError('')
+  e.preventDefault()
+  setIsLoading(true)
+  setError('')
 
-    // Placeholder for backend authentication
-    // TODO: Replace with actual API endpoint
-    try {
-      // Simulated authentication - replace with actual API call
-      // const response = await fetch('/api/login', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData),
-      // })
-      // const data = await response.json()
+  try {
 
-      // Simulated delay
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+    await new Promise((resolve) => setTimeout(resolve, 1000))
 
-      // Mock authentication - in production, verify with backend
-      if (formData.email && formData.password) {
-        // Store user info in localStorage
-        localStorage.setItem('user', JSON.stringify({
-          email: formData.email,
-          loginTime: new Date().toISOString(),
-        }))
-        onLogin(formData.email)
-      } else {
-        setError('Please enter both email and password')
-      }
-    } catch (error) {
-      console.error('Login error:', error)
-      setError('Failed to login. Please try again.')
-    } finally {
-      setIsLoading(false)
+    if (formData.email && formData.password) {
+
+      localStorage.setItem('user', JSON.stringify({
+        email: formData.email,
+        loginTime: new Date().toISOString(),
+      }))
+
+      onLogin(formData.email)
+
+      navigate("/records")
+
+    } else {
+      setError('Please enter both email and password')
     }
-  }
 
+  } catch (error) {
+
+    console.error('Login error:', error)
+    setError('Failed to login. Please try again.')
+
+  } finally {
+    setIsLoading(false)
+  }
+}
   return (
     <div className="min-h-screen bg-[#F9FAFB] flex items-center justify-center px-4 py-12">
       <div className="max-w-md w-full">
@@ -70,7 +66,7 @@ const Login = ({ onLogin, onSwitchToSignup }) => {
           <h2 className="text-3xl font-bold text-[#1E293B] mb-2">Welcome Back</h2>
           <p className="text-gray-600">Sign in to view your prediction history</p>
         </div>
-
+ 
         {/* Login Form */}
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -208,6 +204,7 @@ const Login = ({ onLogin, onSwitchToSignup }) => {
             <strong>Demo Mode:</strong> Enter any email and password to access
           </p>
         </div>
+         <a href="/">back to home page</a>
       </div>
     </div>
   )

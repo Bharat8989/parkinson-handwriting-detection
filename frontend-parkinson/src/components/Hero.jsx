@@ -75,7 +75,7 @@ const Hero = () => {
               </button>
             </div>
             <p className="text-xs text-gray-500 mt-4 max-w-xl">
-              <span className="text-red-600 font-medium">Important:</span> This is not a diagnostic tool. Please consult healthcare professionals for medical diagnosis.
+              {/* <span className="text-red-600 font-medium">Important:</span> This is not a diagnostic tool. Please consult healthcare professionals for medical diagnosis. */}
             </p>
           </div>
 

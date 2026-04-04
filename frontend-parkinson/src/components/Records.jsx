@@ -91,7 +91,7 @@ const Records = ({ userEmail, onLogout }) => {
                 Welcome back, <span className="font-semibold text-primary">{userEmail}</span>
               </p>
             </div>
-            <div className="flex gap-3">
+            <div className="flex gap-3"> 
               <button
                 onClick={exportRecords}
                 className="bg-primary hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
@@ -223,6 +223,7 @@ const Records = ({ userEmail, onLogout }) => {
           )}
         </div>
       </div>
+      <a href="/">back to home page</a>
     </div>
   )
 }
