@@ -81,11 +81,11 @@ const AboutModel = () => {
                     <h3 className="text-xl font-semibold text-[#1E293B] mb-2">
                       LSTM (Long Short-Term Memory)
                     </h3>
-                    <p className="text-gray-600">
+                    {/* <p className="text-gray-600">
                       Processes voice recordings to identify vocal changes,
                       including reduced volume, monotone speech, and articulation
                       issues.
-                    </p>
+                    </p> */}
                   </div>
                 </div>
               </div>

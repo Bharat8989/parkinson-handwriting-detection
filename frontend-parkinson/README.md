@@ -1,6 +1,6 @@
 # NeuroPredict - Parkinson Disease Prediction using AI
 
-A modern, responsive single-page web application for detecting Parkinson's disease likelihood using AI-powered analysis of handwriting and voice samples. Built with React, Tailwind CSS, and Vite.
+A modern, responsive single-page web application for detecting Parkinson's disease likelihood using AI-powered analysis of handwriting  Built with React, Tailwind CSS, and Vite.
 
 ## 🚀 Features
 
@@ -109,7 +109,7 @@ The application includes placeholder code for backend API integration. To connec
 ## ✨ Key Features Implementation
 
 ### File Upload
-- Drag & drop support for both handwriting and voice files
+- Drag & drop support for both handwriting files
 - File type validation (JPG/PNG for images, WAV/MP3 for audio)
 - File preview with ability to remove/change files
 

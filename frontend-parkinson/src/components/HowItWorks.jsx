@@ -33,12 +33,12 @@ const HowItWorks = () => {
       description: 'Take a clear photo or scan of handwritten text (JPG/PNG format)',
       color: 'bg-blue-100 text-primary',
     },
-    {
-      icon: Mic,
-      title: 'Upload voice sample',
-      description: 'Record or upload a voice sample (WAV/MP3 format)',
-      color: 'bg-green-100 text-accent',
-    },
+    // {
+    //   icon: Mic,
+    //   title: 'Upload voice sample',
+    //   description: 'Record or upload a voice sample (WAV/MP3 format)',
+    //   color: 'bg-green-100 text-accent',
+    // },
     {
       icon: Brain,
       title: "AI predicts Parkinson's likelihood",

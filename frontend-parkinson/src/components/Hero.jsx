@@ -54,7 +54,7 @@ const Hero = () => {
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-teal-500 bg-clip-text text-transparent font-extrabold" style={{ WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>AI</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
-              Upload handwriting or voice samples and get quick predictions
+              Upload handwriting and get quick predictions
               powered by deep learning.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
