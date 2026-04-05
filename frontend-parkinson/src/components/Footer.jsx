@@ -68,11 +68,21 @@ const Footer = () => {
               Resources
             </h3>
             <ul className="space-y-2 text-gray-600">
-              <li>Research Papers</li>
-              <li>Documentation</li>
-              <li>API Reference</li>
-              <li>Support</li>
-            </ul>
+  <li>
+    <a
+      href="/Research_Papers.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:text-blue-600 transition-colors"
+    >
+      Research Paper
+    </a>
+  </li>
+
+  <li>Documentation</li>
+  <li>API Reference</li>
+  <li>Support</li>
+</ul>
           </div>
         </div>
 
@@ -83,7 +93,7 @@ const Footer = () => {
               {/* <span className="text-red-600 font-medium">Important:</span> This is not a diagnostic tool. Please consult healthcare professionals for medical diagnosis. */}
             </p>
             <p className="text-center text-gray-500 text-sm">
-              © 2025 NeuroPredict. All Rights Reserved.
+              © 2025 GCOEC. All Rights Reserved.
             </p>
           </div>
         </div>
