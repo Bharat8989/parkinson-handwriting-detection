@@ -70,6 +70,9 @@ The dataset contains **spiral handwriting images** belonging to two categories:
 
 Dataset structure:
 
+### Dataset Structure
+
+```text
 data/
 ├── spiral/
 │   ├── train/
@@ -78,17 +81,21 @@ data/
 └── wave/
     ├── train/
     └── test/
+```
+
 
 These images are used to train the CNN model to detect Parkinson’s disease patterns.
 
+
+
 ---
 
-# Project Structure
+## Project Structure
 
+```text
 parkinson-handwriting-detection/
 │
 ├── backend-parkinson/
-│   │
 │   ├── data/
 │   │   ├── spiral/
 │   │   │   ├── train/
@@ -99,7 +106,6 @@ parkinson-handwriting-detection/
 │   │       └── test/
 │   │
 │   ├── testing_imgs/
-│   │
 │   ├── app.py
 │   ├── predict_single.py
 │   ├── train_cnn_spiral.py
@@ -113,7 +119,6 @@ parkinson-handwriting-detection/
 │   └── requirements.txt
 │
 ├── frontend-parkinson/
-│   │
 │   ├── node_modules/
 │   ├── public/
 │   ├── src/
@@ -122,9 +127,10 @@ parkinson-handwriting-detection/
 │   ├── package.json
 │   ├── tailwind.config.js
 │   ├── postcss.config.js
-│   ├── vite.config.js
+│   └── vite.config.js
 │
 └── README.md
+```
 
 
 ---
