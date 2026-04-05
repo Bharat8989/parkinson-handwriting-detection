@@ -200,11 +200,20 @@ const handleSubmit = async (e) => {
 
         {/* Demo Credentials Info */}
         <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
-          <p className="text-sm text-blue-700">
-            <strong>Demo Mode:</strong> Enter any email and password to access
-          </p>
-        </div>
-         <a href="/">back to home page</a>
+  <p className="text-sm text-blue-700">
+    <strong>Demo Mode:</strong> Enter any email and password to access
+  </p>
+</div>
+
+<div className="flex justify-center mt-6">
+  <a
+    href="/"
+    className="px-6 py-2 bg-blue-600 text-white rounded-lg font-medium shadow hover:bg-blue-700 transition duration-300"
+  >
+    Back to Home Page
+  </a>
+</div>
+       
       </div>
     </div>
   )

@@ -223,7 +223,7 @@ const Records = ({ userEmail, onLogout }) => {
           )}
         </div>
       </div>
-      <a href="/">back to home page</a>
+     
     </div>
   )
 }
