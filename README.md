@@ -72,12 +72,12 @@ Dataset structure:
 
 data/
 ├── spiral/
-│ ├── train/
-│ └── test/
+│   ├── train/
+│   └── test/
 │
 └── wave/
-├── train/
-└── test/
+    ├── train/
+    └── test/
 
 These images are used to train the CNN model to detect Parkinson’s disease patterns.
 
@@ -88,43 +88,41 @@ These images are used to train the CNN model to detect Parkinson’s disease pat
 parkinson-handwriting-detection/
 │
 ├── backend-parkinson/
-│ │
-│ ├── data/
-│ │ ├── spiral/
-│ │ │ ├── train/
-│ │ │ └── test/
-│ │ │
-│ │ └── wave/
-│ │ ├── train/
-│ │ └── test/
-│ │
-│ ├── testing_imgs/
-│ │
-│ ├── app.py
-│ ├── predict_single.py
-│ ├── train_cnn_spiral.py
-│ │
-│ ├── cnn_combined_model_best.h5
-│ ├── cnn_combined_model_final.h5
-│ │
-│ ├── confusion_matrix_combined.png
-│ ├── training_curves_combined.png
-│ │
-│ └── requirements.txt
+│   │
+│   ├── data/
+│   │   ├── spiral/
+│   │   │   ├── train/
+│   │   │   └── test/
+│   │   │
+│   │   └── wave/
+│   │       ├── train/
+│   │       └── test/
+│   │
+│   ├── testing_imgs/
+│   │
+│   ├── app.py
+│   ├── predict_single.py
+│   ├── train_cnn_spiral.py
+│   │
+│   ├── cnn_combined_model_best.h5
+│   ├── cnn_combined_model_final.h5
+│   │
+│   ├── confusion_matrix_combined.png
+│   ├── training_curves_combined.png
+│   │
+│   └── requirements.txt
 │
 ├── frontend-parkinson/
-│ │
-│ ├── node_modules/
-│ ├── public/
-│ ├── src/
-│ │
-│ ├── index.html
-│ ├── package.json
-│ ├── tailwind.config.js
-│ ├── postcss.config.js
-│ ├── vite.config.js
-│ │
-│ └── README.md
+│   │
+│   ├── node_modules/
+│   ├── public/
+│   ├── src/
+│   │
+│   ├── index.html
+│   ├── package.json
+│   ├── tailwind.config.js
+│   ├── postcss.config.js
+│   ├── vite.config.js
 │
 └── README.md
 
