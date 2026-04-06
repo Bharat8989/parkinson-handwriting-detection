@@ -163,6 +163,7 @@ cd backend-parkinson
 
 # Install required Python libraries
 pip install -r requirements.txt
+# pip install tensorflow flask flask-cors numpy opencv-python matplotlib scikit-learn
 
 # Train the CNN model
 python train_cnn_spiral.py
