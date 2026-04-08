@@ -1,9 +1,10 @@
-tensorflow
-opencv-python
-numpy
-pandas
-scikit-learn
-matplotlib
 flask
 flask-cors
+tensorflow-cpu
+numpy
 pillow
+opencv-python
+scikit-learn
+matplotlib
+seaborn
+gunicorn
