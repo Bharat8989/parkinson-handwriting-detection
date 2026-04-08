@@ -7,16 +7,26 @@ import os
 import tempfile
 
 app = Flask(__name__)
-CORS(app)  # allow React frontend
+CORS(app)
 
 # -----------------------------
 # Load trained model
 # -----------------------------
-MODEL_PATH = "cnn_combined_model_final.h5"  # Changed from spiral only
+MODEL_PATH = "cnn_combined_model_final.h5"
 
 model = tf.keras.models.load_model(MODEL_PATH)
 
 class_names = ["healthy", "parkinson"]
+
+
+# -----------------------------
+# Home Route (important for test)
+# -----------------------------
+@app.route("/")
+def home():
+    return jsonify({
+        "message": "Parkinson Detection API Running"
+    })
 
 
 # -----------------------------
@@ -30,12 +40,11 @@ def predict():
 
     file = request.files["handwriting"]
 
-    # create temp file
-    temp_dir = tempfile.mkdtemp()
-    file_path = os.path.join(temp_dir, file.filename)
-    file.save(file_path)
-
     try:
+        # create temp file
+        with tempfile.NamedTemporaryFile(delete=False) as temp:
+            file.save(temp.name)
+            file_path = temp.name
 
         # Load image
         img = image.load_img(
@@ -51,9 +60,9 @@ def predict():
         img_array = img_array / 255.0
 
         # Predict
-        pred = model.predict(img_array)
+        prediction = model.predict(img_array)
 
-        prob_parkinson = float(pred[0][0])
+        prob_parkinson = float(prediction[0][0])
         prob_healthy = 1 - prob_parkinson
 
         predicted_class = "parkinson" if prob_parkinson > 0.5 else "healthy"
@@ -66,11 +75,10 @@ def predict():
         })
 
     except Exception as e:
-
         return jsonify({"error": str(e)}), 500
 
     finally:
-        if os.path.exists(file_path):
+        if 'file_path' in locals() and os.path.exists(file_path):
             os.remove(file_path)
 
 
@@ -78,4 +86,4 @@ def predict():
 # Run Server
 # -----------------------------
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000)
