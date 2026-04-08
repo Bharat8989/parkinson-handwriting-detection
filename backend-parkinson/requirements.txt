@@ -1,10 +1,8 @@
 flask
 flask-cors
-tensorflow
+tensorflow==2.15.0
 numpy
 pillow
 opencv-python
 scikit-learn
-matplotlib
-seaborn
 gunicorn
