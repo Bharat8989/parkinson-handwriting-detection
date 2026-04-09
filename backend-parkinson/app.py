@@ -13,22 +13,21 @@ CORS(app)
 # Load trained model
 # -----------------------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
 MODEL_PATH = os.path.join(BASE_DIR, "cnn_combined_model_final.h5")
 
-model = tf.keras.models.load_model(MODEL_PATH)
+# safer loading
+model = tf.keras.models.load_model(MODEL_PATH, compile=False)
 
 class_names = ["healthy", "parkinson"]
 
 # -----------------------------
-# Home Route it
+# Home Route
 # -----------------------------
 @app.route("/")
 def home():
     return jsonify({
         "message": "Parkinson Detection API Running"
     })
-
 
 # -----------------------------
 # Prediction API
@@ -42,8 +41,7 @@ def predict():
     file = request.files["handwriting"]
 
     try:
-
-        # create temp file
+        # Save uploaded image temporarily
         with tempfile.NamedTemporaryFile(delete=False) as temp:
             file.save(temp.name)
             file_path = temp.name
@@ -56,17 +54,16 @@ def predict():
         )
 
         img_array = image.img_to_array(img)
-        img_array = np.expand_dims(img_array, axis=0)
         img_array = img_array / 255.0
+        img_array = np.expand_dims(img_array, axis=0)
 
-        # Predict
+        # Prediction
         prediction = model.predict(img_array)
 
         prob_parkinson = float(prediction[0][0])
         prob_healthy = 1 - prob_parkinson
 
         predicted_class = "parkinson" if prob_parkinson > 0.5 else "healthy"
-
         confidence = round(max(prob_parkinson, prob_healthy) * 100, 2)
 
         return jsonify({
@@ -78,13 +75,13 @@ def predict():
         return jsonify({"error": str(e)}), 500
 
     finally:
-        if 'file_path' in locals() and os.path.exists(file_path):
+        if "file_path" in locals() and os.path.exists(file_path):
             os.remove(file_path)
 
 
 # -----------------------------
-# Run Server
+# Run Server (Render compatible)
 # -----------------------------
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))   # Render uses PORT env variable
+    port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
