@@ -10,13 +10,13 @@ app = Flask(__name__)
 CORS(app)
 
 # -----------------------------
-# Load trained model
+# Load trained model (.keras)
 # -----------------------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MODEL_PATH = os.path.join(BASE_DIR, "cnn_combined_model_final.h5")
 
-# safer loading
-model = tf.keras.models.load_model(MODEL_PATH, compile=False)
+MODEL_PATH = os.path.join(BASE_DIR, "cnn_combined_model_final.keras")
+
+model = tf.keras.models.load_model(MODEL_PATH)
 
 class_names = ["healthy", "parkinson"]
 
@@ -28,6 +28,7 @@ def home():
     return jsonify({
         "message": "Parkinson Detection API Running"
     })
+
 
 # -----------------------------
 # Prediction API
@@ -41,7 +42,8 @@ def predict():
     file = request.files["handwriting"]
 
     try:
-        # Save uploaded image temporarily
+
+        # Save uploaded file temporarily
         with tempfile.NamedTemporaryFile(delete=False) as temp:
             file.save(temp.name)
             file_path = temp.name
@@ -57,7 +59,7 @@ def predict():
         img_array = img_array / 255.0
         img_array = np.expand_dims(img_array, axis=0)
 
-        # Prediction
+        # Predict
         prediction = model.predict(img_array)
 
         prob_parkinson = float(prediction[0][0])
@@ -80,7 +82,7 @@ def predict():
 
 
 # -----------------------------
-# Run Server (Render compatible)
+# Run Server
 # -----------------------------
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
