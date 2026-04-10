@@ -12,14 +12,15 @@ CORS(app)
 # -----------------------------
 # Load trained model
 # -----------------------------
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = "cnn_combined_model_final.h5"
 
-MODEL_PATH = os.path.join(BASE_DIR, "cnn_combined_model_final.h5")
+model = tf.keras.models.load_model(MODEL_PATH)
 
-model = tf.keras.models.load_model(MODEL_PATH, compile=False)
+class_names = ["healthy", "parkinson"]
+
 
 # -----------------------------
-# Home Route
+# Home Route (important for test)
 # -----------------------------
 @app.route("/")
 def home():
@@ -40,7 +41,6 @@ def predict():
     file = request.files["handwriting"]
 
     try:
-
         # create temp file
         with tempfile.NamedTemporaryFile(delete=False) as temp:
             file.save(temp.name)
@@ -54,11 +54,13 @@ def predict():
         )
 
         img_array = image.img_to_array(img)
-        img_array = img_array / 255.0
+
         img_array = np.expand_dims(img_array, axis=0)
 
+        img_array = img_array / 255.0
+
         # Predict
-        prediction = model.predict(img_array, verbose=0)
+        prediction = model.predict(img_array)
 
         prob_parkinson = float(prediction[0][0])
         prob_healthy = 1 - prob_parkinson
@@ -84,5 +86,4 @@ def predict():
 # Run Server
 # -----------------------------
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=5000)
