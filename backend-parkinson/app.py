@@ -10,7 +10,7 @@ app = Flask(__name__)
 CORS(app)
 
 # -----------------------------
-# Load trained model (.keras)
+# Load trained model
 # -----------------------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -21,7 +21,7 @@ model = tf.keras.models.load_model(MODEL_PATH, compile=False)
 class_names = ["healthy", "parkinson"]
 
 # -----------------------------
-# Home Route
+# Home Route it
 # -----------------------------
 @app.route("/")
 def home():
@@ -43,7 +43,7 @@ def predict():
 
     try:
 
-        # Save uploaded file temporarily
+        # create temp file
         with tempfile.NamedTemporaryFile(delete=False) as temp:
             file.save(temp.name)
             file_path = temp.name
@@ -56,8 +56,8 @@ def predict():
         )
 
         img_array = image.img_to_array(img)
-        img_array = img_array / 255.0
         img_array = np.expand_dims(img_array, axis=0)
+        img_array = img_array / 255.0
 
         # Predict
         prediction = model.predict(img_array)
@@ -66,6 +66,7 @@ def predict():
         prob_healthy = 1 - prob_parkinson
 
         predicted_class = "parkinson" if prob_parkinson > 0.5 else "healthy"
+
         confidence = round(max(prob_parkinson, prob_healthy) * 100, 2)
 
         return jsonify({
@@ -77,7 +78,7 @@ def predict():
         return jsonify({"error": str(e)}), 500
 
     finally:
-        if "file_path" in locals() and os.path.exists(file_path):
+        if 'file_path' in locals() and os.path.exists(file_path):
             os.remove(file_path)
 
 
@@ -85,6 +86,5 @@ def predict():
 # Run Server
 # -----------------------------
 if __name__ == "__main__":
-    import os
-    port = int(os.environ.get("PORT", 10000))
+    port = int(os.environ.get("PORT", 5000))   # Render uses PORT env variable
     app.run(host="0.0.0.0", port=port)
