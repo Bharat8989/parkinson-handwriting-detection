@@ -21,7 +21,6 @@ spiral_test_dir = "data/spiral/test"
 wave_train_dir = "data/wave/train"
 wave_test_dir = "data/wave/test"
 
-
 # -----------------------------
 # LOAD IMAGES
 # -----------------------------
@@ -45,7 +44,6 @@ def load_images_from_directory(directory, img_size):
             img_path = os.path.join(class_dir, img_name)
 
             try:
-
                 img = tf.keras.preprocessing.image.load_img(
                     img_path,
                     target_size=(img_size, img_size),
@@ -84,17 +82,14 @@ y_train = np.concatenate([spiral_train_y, wave_train_y], axis=0)
 X_test = np.concatenate([spiral_test_x, wave_test_x], axis=0)
 y_test = np.concatenate([spiral_test_y, wave_test_y], axis=0)
 
-
 # Normalize
 X_train = X_train.astype("float32") / 255.0
 X_test = X_test.astype("float32") / 255.0
-
 
 # Shuffle
 shuffle_idx = np.random.permutation(len(X_train))
 X_train = X_train[shuffle_idx]
 y_train = y_train[shuffle_idx]
-
 
 print("Training samples:", len(X_train))
 print("Testing samples:", len(X_test))
@@ -111,7 +106,6 @@ datagen = ImageDataGenerator(
 )
 
 datagen.fit(X_train)
-
 
 # -----------------------------
 # CLASS WEIGHTS
@@ -160,7 +154,6 @@ model = models.Sequential([
 
 ])
 
-
 model.compile(
     optimizer=tf.keras.optimizers.Adam(learning_rate=1e-4),
     loss="binary_crossentropy",
@@ -169,12 +162,11 @@ model.compile(
 
 model.summary()
 
-
 # -----------------------------
 # CALLBACKS
 # -----------------------------
 checkpoint = ModelCheckpoint(
-    "cnn_combined_model_best.keras",
+    "cnn_combined_model_best.h5",
     monitor="val_accuracy",
     save_best_only=True
 )
@@ -184,7 +176,6 @@ earlystop = EarlyStopping(
     patience=10,
     restore_best_weights=True
 )
-
 
 # -----------------------------
 # TRAINING
@@ -204,7 +195,6 @@ history = model.fit(
     class_weight=class_weight_dict
 )
 
-
 # -----------------------------
 # EVALUATION
 # -----------------------------
@@ -212,10 +202,51 @@ test_loss, test_acc = model.evaluate(X_test, y_test)
 
 print("Test Accuracy:", test_acc * 100)
 
+# -----------------------------
+# SAVE MODEL
+# -----------------------------
+model.save("cnn_combined_model_final.h5")
+
+print("Model saved as cnn_combined_model_final.h5")
+
 
 # -----------------------------
-# SAVE FINAL MODEL (.keras)
+# TRAINING CURVES
 # -----------------------------
-model.save("cnn_combined_model_final.keras")
+plt.figure(figsize=(10,5))
 
-print("Model saved as cnn_combined_model_final.keras")
+plt.subplot(1,2,1)
+plt.plot(history.history['accuracy'])
+plt.plot(history.history['val_accuracy'])
+plt.title("Accuracy")
+plt.legend(["Train","Validation"])
+
+plt.subplot(1,2,2)
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title("Loss")
+plt.legend(["Train","Validation"])
+
+plt.savefig("training_curves_combined.png")
+plt.show()
+
+
+# -----------------------------
+# CONFUSION MATRIX
+# -----------------------------
+y_pred = model.predict(X_test)
+y_pred_classes = (y_pred > 0.5).astype("int32")
+
+cm = confusion_matrix(y_test, y_pred_classes)
+
+plt.figure(figsize=(6,6))
+sns.heatmap(cm, annot=True, fmt="d", cmap="Blues",
+            xticklabels=["Healthy","Parkinson"],
+            yticklabels=["Healthy","Parkinson"])
+
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+plt.title("Confusion Matrix")
+
+plt.savefig("confusion_matrix_combined.png")
+plt.show()

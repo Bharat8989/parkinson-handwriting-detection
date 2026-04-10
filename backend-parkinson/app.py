@@ -14,14 +14,12 @@ CORS(app)
 # -----------------------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-MODEL_PATH = os.path.join(BASE_DIR, "cnn_combined_model_final.keras")
+MODEL_PATH = os.path.join(BASE_DIR, "cnn_combined_model_final.h5")
 
 model = tf.keras.models.load_model(MODEL_PATH, compile=False)
 
-class_names = ["healthy", "parkinson"]
-
 # -----------------------------
-# Home Route it
+# Home Route
 # -----------------------------
 @app.route("/")
 def home():
@@ -56,11 +54,11 @@ def predict():
         )
 
         img_array = image.img_to_array(img)
-        img_array = np.expand_dims(img_array, axis=0)
         img_array = img_array / 255.0
+        img_array = np.expand_dims(img_array, axis=0)
 
         # Predict
-        prediction = model.predict(img_array)
+        prediction = model.predict(img_array, verbose=0)
 
         prob_parkinson = float(prediction[0][0])
         prob_healthy = 1 - prob_parkinson
@@ -86,5 +84,5 @@ def predict():
 # Run Server
 # -----------------------------
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))   # Render uses PORT env variable
+    port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
