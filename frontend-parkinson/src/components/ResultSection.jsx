@@ -95,7 +95,7 @@ const ResultSection = ({ result, onReset, onViewHistory }) => {
                 <span className="relative z-10">Download Report (PDF)</span>
               </button>
             )}
-            {onViewHistory && (
+            {/* {onViewHistory && (
               <button
                 onClick={onViewHistory}
                 className="bg-accent hover:bg-green-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-purple-500/40 transform hover:-translate-y-1 flex items-center justify-center gap-2 relative overflow-hidden group"
@@ -104,7 +104,7 @@ const ResultSection = ({ result, onReset, onViewHistory }) => {
                 <History className="w-5 h-5 relative z-10" />
                 <span className="relative z-10">View History</span>
               </button>
-            )}
+            )} */}
             <button
               onClick={onReset}
               className="bg-white hover:bg-gray-50 text-primary px-8 py-3 rounded-lg font-semibold transition-all duration-300 border-2 border-primary flex items-center justify-center gap-2"

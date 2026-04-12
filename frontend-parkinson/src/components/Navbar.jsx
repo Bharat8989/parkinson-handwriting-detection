@@ -68,9 +68,9 @@ const Navbar = ({ isAuthenticated, userEmail, onLoginClick, onSignupClick, onLog
               About
             </button>
 
-            <button onClick={() => scrollToSection("contact")} className="navlink">
+            {/* <button onClick={() => scrollToSection("contact")} className="navlink">
               Contact
-            </button>
+            </button> */}
 
             {isAuthenticated ? (
               <div className="flex items-center gap-3 pl-4 border-l">
@@ -96,26 +96,32 @@ const Navbar = ({ isAuthenticated, userEmail, onLoginClick, onSignupClick, onLog
             ) : (
               <div className="flex items-center gap-3">
 
+                {/* Login Button Commented */}
+                {/*
                 <button
                   onClick={onLoginClick}
                   className="border border-primary px-4 py-2 rounded-lg text-primary hover:bg-primary hover:text-white transition"
                 >
                   Login
                 </button>
+                */}
 
+                {/* Signup Button Commented */}
+                {/*
                 <button
                   onClick={onSignupClick}
                   className="bg-primary text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
                 >
                   Sign Up
                 </button>
+                */}
 
               </div>
             )}
 
           </div>
 
-          {/* Mobile Button */}
+          {/* Mobile Menu Button */}
           <button
             className="md:hidden"
             onClick={() => setMobileMenu(!mobileMenu)}
@@ -138,7 +144,7 @@ const Navbar = ({ isAuthenticated, userEmail, onLoginClick, onSignupClick, onLog
             <button onClick={() => scrollToSection("how-it-works")}>How It Works</button>
             <button onClick={() => scrollToSection("upload")}>Upload</button>
             <button onClick={() => scrollToSection("about")}>About</button>
-            <button onClick={() => scrollToSection("contact")}>Contact</button>
+            {/* <button onClick={() => scrollToSection("contact")}>Contact</button> */}
 
             <div className="border-t pt-4">
 
@@ -156,19 +162,25 @@ const Navbar = ({ isAuthenticated, userEmail, onLoginClick, onSignupClick, onLog
 
                 <div className="flex flex-col gap-3">
 
+                  {/* Login Button Commented */}
+                  {/*
                   <button
                     onClick={onLoginClick}
                     className="border border-primary text-primary py-2 rounded-lg"
                   >
                     Login
                   </button>
+                  */}
 
+                  {/* Signup Button Commented */}
+                  {/*
                   <button
                     onClick={onSignupClick}
                     className="bg-primary text-white py-2 rounded-lg"
                   >
                     Sign Up
                   </button>
+                  */}
 
                 </div>
 

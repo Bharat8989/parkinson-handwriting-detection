@@ -8,7 +8,7 @@ test/
 testing_imgs/
 
 # Ignore trained models
-# *.h5
+*.h5
 data/
 testing_imgs/
 __pycache__/
@@ -24,6 +24,7 @@ env/
 # OS files
 .DS_Store
 Thumbs.db
+
 
 # Node modules (frontend)
 node_modules/
